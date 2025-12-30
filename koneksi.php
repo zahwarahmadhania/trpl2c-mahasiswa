@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 $host = 'localhost';
 $database = 'db-akademik';
 $user = 'root';
@@ -17,3 +18,18 @@ try {
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
+=======
+// Koneksi ke database MySQL menggunakan mysqli
+$server = "localhost";
+$user = "root";
+$password = "";
+$nama_database = "db_akademik";
+
+$db = mysqli_connect($server, $user, $password, $nama_database);
+
+// Cek koneksi
+if (!$db) {
+    die("Gagal terhubung dengan database: " . mysqli_connect_error());
+}
+?>
+>>>>>>> 7394782e33adbcf79df3ef5bf41f27e6dbc63f2b

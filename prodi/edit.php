@@ -35,7 +35,7 @@ $title = "Edit Data Program Studi";
                         <input type="text" name="nama_prodi" class="form-control"
                             value="<?= htmlspecialchars($data['nama_prodi']) ?>" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3"trpl2c>
                         <label>Jenjang</label>
                         <div class="d-flex gap-3">
                             <div class="form-check">
