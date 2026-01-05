@@ -39,7 +39,7 @@ $title = "Daftar Program Studi";
                                 <td><?= $prd['akreditasi'] ?></td>
                                 <td><?= $prd['keterangan'] ?></td>
                                 <td>
-                                    <a href="edit.php?page=edit&id=<?= $prd['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="index.php?page=edit&id=<?= $prd['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                     <a href="proses.php?aksi=hapus&id=<?= $prd['id'] ?>" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                                 </td>

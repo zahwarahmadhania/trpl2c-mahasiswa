@@ -1,6 +1,7 @@
 <?php
 include '../koneksi.php';
 
+// Pastikan parameter yang digunakan adalah 'id' sesuai kebutuhan tabel prodi
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
@@ -8,6 +9,7 @@ if (!$id) {
     exit();
 }
 
+// Ambil data lama
 $stmt = $pdo->prepare("SELECT * FROM program_studi WHERE id = :id");
 $stmt->execute(['id' => $id]);
 $data = $stmt->fetch();
@@ -16,63 +18,56 @@ if (!$data) {
     die("Data tidak ditemukan.");
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-}
-
 $title = "Edit Data Program Studi";
 ?>
+
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary">
-                <h4 class="mb-0">Edit Data Program Studi</h4>
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary py-3">
+                <h5 class="mb-0 text-white fw-bold">Edit Data Program Studi</h5>
             </div>
-            <div class="card-body">
+            
+            <div class="card-body p-4">
                 <form method="POST" action="proses.php?aksi=edit">
-                    <input type="hidden" name="id" value="<?= $id ?>">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
+
                     <div class="mb-3">
-                        <label>Nama Program Studi</label>
+                        <label class="form-label fw-semibold text-secondary">Nama Program Studi</label>
                         <input type="text" name="nama_prodi" class="form-control"
-                            value="<?= htmlspecialchars($data['nama_prodi']) ?>" required>
+                               value="<?= htmlspecialchars($data['nama_prodi'] ?? '') ?>" required>
                     </div>
-                    <div class="mb-3"trpl2c>
-                        <label>Jenjang</label>
-                        <div class="d-flex gap-3">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-secondary">Jenjang</label>
+                        <div class="d-flex gap-4 mt-1">
+                            <?php 
+                            $options = ['D2', 'D3', 'D4', 'S2'];
+                            foreach($options as $opt): 
+                            ?>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenjang" value="D2"
-                                    <?= $data['jenjang'] == 'D2' ? 'checked' : '' ?>>
-                                <label class="form-check-label">D2</label>
+                                <input class="form-check-input" type="radio" name="jenjang" id="j<?= $opt ?>" value="<?= $opt ?>"
+                                    <?= ($data['jenjang'] ?? '') == $opt ? 'checked' : '' ?> required>
+                                <label class="form-check-label" for="j<?= $opt ?>"><?= $opt ?></label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenjang" value="D3"
-                                    <?= $data['jenjang'] == 'D3' ? 'checked' : '' ?>>
-                                <label class="form-check-label">D3</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenjang" value="D4"
-                                    <?= $data['jenjang'] == 'D4' ? 'checked' : '' ?>>
-                                <label class="form-check-label">D4</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenjang" value="S2"
-                                    <?= $data['jenjang'] == 'S2' ? 'checked' : '' ?>>
-                                <label class="form-check-label">S2</label>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
-                        <div class="form-check">
-                        </div>
-                        <div class="mb-3">
-                            <label>Akreditas</label>
-                            <textarea name="akreditas" class="form-control"
-                                rows="3"><?= htmlspecialchars($data['akreditas']) ?></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label>Keterangan</label>
-                            <textarea name="keterangan" class="form-control"
-                                rows="3"><?= htmlspecialchars($data['keterangan']) ?></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                        <a href="index.php?page=home" class="btn btn-secondary">Batal</a>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-secondary">Akreditasi</label>
+                        <textarea name="akreditasi" class="form-control" rows="3"><?= htmlspecialchars($data['akreditasi'] ?? $data['akreditas'] ?? '') ?></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold text-secondary">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" rows="3"><?= htmlspecialchars($data['keterangan'] ?? '') ?></textarea>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary px-4">Update</button>
+                        <a href="index.php?page=home" class="btn btn-secondary px-4">Batal</a>
+                    </div>
                 </form>
             </div>
         </div>

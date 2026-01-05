@@ -36,7 +36,7 @@ $title = "Edit Data Mahasiswa";
                     </div>
                     <div class="mb-3">
                         <label>Nama Mahasiswa</label>
-                        <input type="text" name="nama_mhs" class="form-control"
+                        <input type="text" name="nama_mahasiswa" class="form-control"
                             value="<?= htmlspecialchars($data['nama_mahasiswa']) ?>" required>
                     </div>
                     <div class="mb-3">
