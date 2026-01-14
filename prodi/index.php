@@ -6,7 +6,7 @@ $prodi = $stmt->fetchAll();
 
 $title = "Daftar Program Studi";
 
-$page = $_GET['page'] ?? 'home'; // ✅ WAJIB SEBELUM include header
+$page = $_GET['page'] ?? 'home'; // 
 
 include '../layout/header.php';
 

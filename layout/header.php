@@ -52,6 +52,9 @@ if (isset($_POST['logout'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="http://db-akademik.test/prodi/index.php">Data Prodi</a>
                     </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="http://db-akademik.test/edit_profile.php">Profile</a>
+                    </li>
                     <li class="nav-item">
                         <form method="POST">
                             <button class="btn btn-outline-light ms-4" type="submit" name="logout">Logout</button>
